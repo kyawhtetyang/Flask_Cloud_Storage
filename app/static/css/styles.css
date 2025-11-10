@@ -1,0 +1,5 @@
+body { background:#f7f9fc; }
+.card-title { white-space: nowrap; overflow:hidden; text-overflow:ellipsis; }
+.navbar-brand { font-weight:600; }
+
+

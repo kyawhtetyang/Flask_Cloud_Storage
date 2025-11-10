@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Profile</h3>
+<p>Username: {{ user.username }}</p>
+<p>Email: {{ user.email or '-' }}</p>
+<p>Role: {{ user.role }}</p>
+<p>Joined: {{ user.created_at.strftime('%Y-%m-%d') }}</p>
+{% endblock %}
+
+

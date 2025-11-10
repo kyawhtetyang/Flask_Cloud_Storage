@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Admin Dashboard</h3>
+<h4>Users</h4>
+<table class="table table-striped">
+<thead><tr><th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Joined</th></tr></thead>
+<tbody>
+{% for u in users %}
+<tr><td>{{ u.id }}</td><td>{{ u.username }}</td><td>{{ u.email or '-' }}</td><td>{{ u.role }}</td><td>{{ u.created_at.strftime('%Y-%m-%d') }}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+
+<h4>Files</h4>
+<table class="table table-striped">
+<thead><tr><th>ID</th><th>Filename</th><th>User</th><th>Size KB</th><th>Category</th><th>Tags</th><th>Uploaded</th></tr></thead>
+<tbody>
+{% for f in files %}
+<tr><td>{{ f.id }}</td><td>{{ f.filename }}</td><td>{{ f.username }}</td><td>{{ (f.size or 0)//1024 }}</td><td>{{ f.category }}</td><td>{{ f.tags }}</td><td>{{ f.uploaded_at.strftime('%Y-%m-%d') }}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}
+
+

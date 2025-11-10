@@ -1,0 +1,33 @@
+<div class="row row-cols-1 row-cols-md-3 g-3">
+{% for f in files %}
+<div class="col">
+<div class="card h-100">
+<div class="card-body">
+<h6 class="card-title text-truncate">{{ f.filename }}</h6>
+<p class="card-text small">
+Owner: {{ f.username }}<br>
+Size: {{ (f.size or 0)//1024 }} KB<br>
+Uploaded: {{ f.uploaded_at.strftime('%Y-%m-%d %H:%M') }}<br>
+Category: {{ f.category or 'general' }}<br>
+Tags: {{ f.tags or '-' }}<br>
+Description: {{ f.description or '-' }}
+</p>
+<div class="d-flex gap-2">
+<a class="btn btn-sm btn-outline-primary" href="{{ url_for('storage.download', file_id=f.id) }}">Download</a>
+<a class="btn btn-sm btn-outline-success" href="{{ url_for('storage.share', file_id=f.id) }}">Share</a>
+<form action="{{ url_for('storage.delete', file_id=f.id) }}" method="post">
+<button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
+</form>
+</div>
+</div>
+{% if f.shared_token %}
+<div class="card-footer">
+<small>Share: <a href="{{ url_for('storage.shared', token=f.shared_token) }}">{{ f.shared_token }}</a></small>
+</div>
+{% endif %}
+</div>
+</div>
+{% endfor %}
+</div>
+
+
